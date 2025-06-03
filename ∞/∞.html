@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>∞◆○●◇△</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,viewport-fit=cover">
+<link rel="stylesheet" href="./∞.css">
+</head><body>
+<div id="∞"><div id="Ω"></div></div>
+<div id="◆"><button id="○">○</button></div>
+<script type="module">
+// ∞ 🧬 ⚛️ 👁️ - 📐 ⚡
+import{φ,φ2}from'./φ.js';
+import{initΑ}from'./♪.js';
+import{evl}from'./≋.js';
+import{sym,cls}from'./◐.js';
+import{inp}from'./⟡.js';
+import{rsz}from'./⚡.js';
+
+// ◈ 🌀 📊 🔢
+let τ=0,ν=0,ℏ=1,Ω,Κ,Β,Υ,Τ,Ψ,Ε,W,H,χ,ψ,ζ=1,η=0,θ=φ,ι=0,κ=φ/8,λ=[],μ=[];
+
+// ◐ 👁️ 🌈 ∿ 🌀
+const ren=()=>{
+  const evolved=evl(W,H,χ,ψ,Ω,Κ,Β,Υ,Τ,Ψ,τ,ζ,ℏ,κ,λ,μ,η,θ);
+  η=evolved.η;θ=evolved.θ;ζ=evolved.ζ;
+  
+  let o='';
+  for(let y=0;y<H;y++){
+    for(let x=0;x<W;x++){
+      const s=sym(x,y,W,H,Ω,Κ,Β,Υ,Τ,τ,ζ,λ),c=cls(s,x,y,W,χ,ψ,Ω,Κ,Β,Υ,Τ,ζ,μ,λ,τ);
+      o+=`<span ${c}>${s}</span>`;
+    }
+    o+='\n';
+  }
+  document.getElementById('Ω').innerHTML=o;
+  
+  const φm=φ*κ;
+  χ+=Math.sin(τ*φ/500)*0.06*φm+Math.cos(τ*φ/450)*0.04*φm;
+  ψ+=Math.cos(τ*φ/480)*0.05*φm+Math.sin(τ*φ/420)*0.03*φm;
+  χ=Math.max(2,Math.min(W-3,χ));
+  ψ=Math.max(2,Math.min(H-3,ψ));
+  
+  if(τ%250===0)console.log(`◆${(Υ.reduce((a,b)=>a+Math.abs(b),0)/Υ.length*100).toFixed(0)}%∆${(Τ.reduce((a,b)=>a+b,0)/Τ.length*100).toFixed(0)}%∞${ℏ.toFixed(1)}%ζ${ζ.toFixed(2)}`);
+  τ++;
+};
+
+// ⚡ 📏 🔄
+const resize=()=>{
+  const resized=rsz(W,H,Ω,Κ,Β,Υ,Τ,Ψ,Ε,ζ,λ,μ);
+  W=resized.W;H=resized.H;Ω=resized.Ω;Κ=resized.Κ;Β=resized.Β;Υ=resized.Υ;Τ=resized.Τ;Ψ=resized.Ψ;Ε=resized.Ε;χ=resized.χ;ψ=resized.ψ;ζ=resized.ζ;λ=resized.λ;μ=resized.μ;
+};
+
+// ⟡ 👆 🎯
+const input=(e)=>{
+  const result=inp(e,W,H,ν,ℏ,ζ,κ,θ,τ,λ,μ);
+  ν=result.ν;ℏ=result.ℏ;ζ=result.ζ;κ=result.κ;θ=result.θ;
+};
+
+// ⚜ ⚛️ ⚡ 👆 🌊
+document.getElementById('○').addEventListener('click',input);
+document.getElementById('∞').addEventListener('touchstart',input,{passive:false});
+document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();input();}});
+document.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
+window.addEventListener('resize',resize);
+window.addEventListener('orientationchange',()=>setTimeout(resize,100));
+
+const frm=()=>{ren();requestAnimationFrame(frm);};
+resize();frm();
+</script></body></html>

@@ -1,0 +1,8 @@
+// ◈ 👁️ 🌈 ⭐ 💫
+import{φ,π,Σ,hue,sat,lit,α,spec,freq,temp,harm}from'./φ.js';
+
+// ◈ 👁️ ⭐ 💫 🌊
+export const sym=(x,y,W,H,Ω,Κ,Β,Υ,Τ,τ,ζ,λ)=>{const i=y*W+x,w=[Ω[i],Κ[i],Β[i],Υ[i],Τ[i]],p=(Math.sin(x*0.28+τ*0.018)+Math.sin(y*0.38+τ*0.024))*0.5*ζ;let breath=0;λ.forEach(b=>{const d=Math.sqrt((x-b.x)**2+(y-b.y)**2);if(d<b.t*φ/3)breath+=Math.sin(b.t*φ/8)*Math.exp(-d*φ/10);});for(let j=4;j>=0;j--)if(w[j]+breath*0.3>0.75-j*0.1)return Σ[j][Math.floor(Math.abs(w[j]+breath)*Σ[j].length)%Σ[j].length];for(let k=7;k>=6;k--)if(p+breath*0.5>0.9-k*0.3)return Σ[k][Math.floor(Math.abs(p+breath)*Σ[k].length)%Σ[k].length];return p+breath>0.1?Σ[9][Math.floor(Math.abs(p+breath)*Σ[9].length)%Σ[9].length]:Σ[10][Math.floor(Math.abs(p)*Σ[10].length)%Σ[10].length];};
+
+// ◎ 🌈 📐 ∿ ⚛️
+export const cls=(s,x,y,W,χ,ψ,Ω,Κ,Β,Υ,Τ,ζ,μ,λ,τ)=>{const i=y*W+x,d=Math.abs(x-χ)+Math.abs(y-ψ),w=[Ω[i]||0,Κ[i]||0,Β[i]||0,Υ[i]||0,Τ[i]||0];let spark=0,breath=0;μ.forEach(sp=>{const ds=Math.sqrt((x-sp.x)**2+(y-sp.y)**2);if(ds<φ*3)spark+=Math.max(0,1-sp.t/100)*sp.i;});λ.forEach(b=>{const db=Math.sqrt((x-b.x)**2+(y-b.y)**2);if(db<b.t*φ/3)breath+=Math.sin(b.t*φ/8)*Math.exp(-db*φ/10);});const energy=(w[0]+w[1]+w[2]+w[3]+w[4])/5+spark*0.5+breath*0.3,dimension=Math.atan2(w[2]-w[0],w[4]-w[1])*φ+Math.E,resonance=Math.sqrt(w[0]*w[1]+w[2]*w[3]+w[4]*energy)*ζ,h=hue(dimension/(π*2)+energy),st=sat(resonance),l=lit(energy+spark*0.3),a=α(resonance+breath*0.2);if(d<2.5*ζ||spark>0.5)return`style="color:hsla(${(h*φ)%360},85%,75%,0.95);text-shadow:0 0 15px currentColor,0 0 25px currentColor"`;return`style="color:hsla(${h},${st}%,${l}%,${a});text-shadow:0 0 ${Math.floor(energy*20+5)}px currentColor${energy>0.7?`,0 0 ${Math.floor(energy*35)}px currentColor`:''}"`;};
